@@ -52,7 +52,7 @@ function minSymbol(length = 1, message) {
         message: msg,
         params: { length },
         test(value) {
-            return (value.match(/[^a-zA-Z0-9]/g) || []).length >= length
+            return (value.match(/[^a-zA-Z0-9\s]/g) || []).length >= length
         }
     })
 } // minSymbol()
@@ -84,6 +84,7 @@ const { string: StringSchema } = (function() {
     try {
         return require('yup')
     } catch (e) {
+        /* istanbul ignore next */
         throw Error('yup-password requires `yup` package to be installed.')
     }
 })()
