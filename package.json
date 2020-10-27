@@ -1,0 +1,30 @@
+{
+  "name": "yup-password",
+  "version": "0.1.0",
+  "description": "Yup, dead simple password validation.",
+  "keywords": [
+    "yup",
+    "validation",
+    "password",
+    "complexity"
+  ],
+  "license": "MIT",
+  "author": "@knicola",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knicola/yup-password.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knicola/yup-password/issues"
+  },
+  "homepage": "https://github.com/knicola/yup-password#readme",
+  "devDependencies": {
+    "eslint": "^7.12.0",
+    "jest": "^26.6.1",
+    "yup": "^0.29.3"
+  },
+  "peerDependencies": {
+    "yup": "^0.29.3"
+  }
+}
