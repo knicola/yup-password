@@ -22,14 +22,12 @@
   "scripts": {
     "test": "jest --notify",
     "coverage": "jest --coverage",
-    "lint": "eslint index.js",
-    "build": "parcel build index.js"
+    "lint": "eslint index.js"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",
     "eslint": "^7.12.0",
     "jest": "^26.6.1",
-    "parcel": "^1.12.4",
     "yup": "^0.29.3"
   },
   "peerDependencies": {
