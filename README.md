@@ -1,6 +1,6 @@
 # Yup-Password
 
-[Yup](#https://github.com/jquense/yup), dead simple password validation.
+[Yup](https://github.com/jquense/yup), dead simple password validation.
 
 
 ## Install
