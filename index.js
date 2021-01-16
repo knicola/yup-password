@@ -5,6 +5,10 @@ const p = function (word, num) {
     return num === 1 ? word : `${word}s`
 }
 
+const isNullOrUndefined = function (value) {
+    return value === null || value === undefined
+}
+
 function minLowercase(length = 1, message) {
     const msg = message || '${path} must contain at least ${length} lower-cased ' + p('letter', length)
     return this.test({
@@ -13,7 +17,7 @@ function minLowercase(length = 1, message) {
         message: msg,
         params: { length },
         test(value) {
-            return (value.match(/[a-z]/g) || []).length >= length
+            return isNullOrUndefined(value) || (value.match(/[a-z]/g) || []).length >= length
         }
     })
 } // minLowercase()
@@ -26,7 +30,7 @@ function minUppercase(length = 1, message) {
         message: msg,
         params: { length },
         test(value) {
-            return (value.match(/[A-Z]/g) || []).length >= length
+            return isNullOrUndefined(value) || (value.match(/[A-Z]/g) || []).length >= length
         }
     })
 } // minUppercase()
@@ -39,7 +43,7 @@ function minNumber(length = 1, message) {
         message: msg,
         params: { length },
         test(value) {
-            return (value.match(/[0-9]/g) || []).length >= length
+            return isNullOrUndefined(value) || (value.match(/[0-9]/g) || []).length >= length
         }
     })
 } // minNumber()
@@ -52,7 +56,7 @@ function minSymbol(length = 1, message) {
         message: msg,
         params: { length },
         test(value) {
-            return (value.match(/[^a-zA-Z0-9\s]/g) || []).length >= length
+            return isNullOrUndefined(value) || (value.match(/[^a-zA-Z0-9\s]/g) || []).length >= length
         }
     })
 } // minSymbol()
@@ -65,7 +69,7 @@ function minRepeating(length = 2, message) {
         message: msg,
         params: { length: length },
         test(value) {
-            return ! new RegExp(`(.)\\1{${length},}`).test(value)
+            return isNullOrUndefined(value) || ! new RegExp(`(.)\\1{${length},}`).test(value)
         }
     })
 } // minRepeating()

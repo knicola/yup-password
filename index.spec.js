@@ -131,6 +131,11 @@ describe('Yup-Password Tests', () => {
             expect(case2).toBeFalsy()
             expect(case3).toBeFalsy()
         }) // test
+        it('should return true if undefined', async () => {
+            const res = await schema.minLowercase(1).isValid(undefined)
+
+            expect(res).toBeTruthy()
+        }) // test
     }) // group
 
     describe('.minUppercase()', () => {
@@ -158,6 +163,11 @@ describe('Yup-Password Tests', () => {
             expect(case2).toBeFalsy()
             expect(case3).toBeFalsy()
         }) // test
+        it('should return true if undefined', async () => {
+            const res = await schema.minUppercase(1).isValid(undefined)
+
+            expect(res).toBeTruthy()
+        }) // test
     }) // group
 
     describe('.minNumber()', () => {
@@ -183,6 +193,11 @@ describe('Yup-Password Tests', () => {
             expect(case1).toBeTruthy()
             expect(case2).toBeFalsy()
         }) // test
+        it('should return true if undefined', async () => {
+            const res = await schema.minNumber(1).isValid(undefined)
+
+            expect(res).toBeTruthy()
+        }) // test
     }) // group
 
     describe('.minSymbol()', () => {
@@ -207,6 +222,11 @@ describe('Yup-Password Tests', () => {
 
             expect(case1).toBeTruthy()
             expect(case2).toBeFalsy()
+        }) // test
+        it('should return true if undefined', async () => {
+            const res = await schema.minSymbol(1).isValid(undefined)
+
+            expect(res).toBeTruthy()
         }) // test
     }) // group
 
@@ -242,6 +262,11 @@ describe('Yup-Password Tests', () => {
             expect(case1).toBeTruthy()
             expect(case2).toBeTruthy()
             expect(case3).toBeFalsy()
+        }) // test
+        it('should return true if undefined', async () => {
+            const res = await schema.minRepeating(1).isValid(undefined)
+
+            expect(res).toBeTruthy()
         }) // test
     }) // group
 }) // group
