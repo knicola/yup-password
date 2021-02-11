@@ -74,6 +74,20 @@ function minRepeating(length = 2, message) {
     })
 } // minRepeating()
 
+function minWords(length = 2, message) {
+    const msg = message || '${path} must have at least ${length} ' + p('word', length)
+    const rx = new RegExp('[a-zA-Z0-9]')
+    return this.test({
+        name: 'minWords',
+        exclusive: true,
+        message: msg,
+        params: { length: length },
+        test(value) {
+            return isNullOrUndefined(value) || value.split(' ').filter(v => !! v && rx.test(v)).length >= length
+        }
+    })
+} // minWords()
+
 function password() {
     return this
         .min(8)
@@ -90,6 +104,7 @@ function setup(yup) {
     yup.addMethod(yup.string, 'minNumber', minNumber)
     yup.addMethod(yup.string, 'minSymbol', minSymbol)
     yup.addMethod(yup.string, 'minRepeating', minRepeating)
+    yup.addMethod(yup.string, 'minWords', minWords)
     yup.addMethod(yup.string, 'password', password)
 }
 

@@ -7,6 +7,7 @@ declare module "yup" {
         minNumber(length?: number, message?: string): StringSchema;
         minSymbol(length?: number, message?: string): StringSchema;
         minRepeating(length?: number, message?: string): StringSchema;
+        minWords(length?: number, message?: string): StringSchema;
         password(): StringSchema;
     }
 }

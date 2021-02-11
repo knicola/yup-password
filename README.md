@@ -83,6 +83,12 @@ Password must not contain a sequence of X amount of repeated characters. For exa
 yup.string().minRepeating(2)
 ```
 
+##### .minWords(length?: number = 2, message?: string)
+Password must contain X amount of words or more.
+```js
+yup.string().minWords(2)
+```
+
 ## License
 
 This project is open-sourced software licensed under the [MIT license](./LICENSE).

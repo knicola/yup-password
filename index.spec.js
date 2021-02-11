@@ -257,4 +257,47 @@ describe('Yup-Password Tests', () => {
             expect(res).toBeTruthy()
         }) // test
     }) // group
+
+    describe('.minWords()', () => {
+        it('should require a specified amount of words', async () => {
+            const case1 = await schema.minWords(3).isValid('just enough words')
+            const case2 = await schema.minWords(3).isValid('more than enough words')
+            const case3 = await schema.minWords(4).isValid('not enough words')
+
+            expect(case1).toBeTruthy()
+            expect(case2).toBeTruthy()
+            expect(case3).toBeFalsy()
+        }) // test
+        it('should recognize a sequence of characters as a word so long as it contains letters or numbers', async () => {
+            const case1 = await schema.minWords(5).isValid('this is the 1st test')
+            const case2 = await schema.minWords(4).isValid('this is a test!@#$%^')
+            const case3 = await schema.minWords(4).isValid('this.1 is/2 a3! test4@')
+            const case4 = await schema.minWords(2).isValid('1337 53cr37')
+            const case5 = await schema.minWords(2).isValid('!@#$ (*&^%')
+
+            expect(case1).toBeTruthy()
+            expect(case2).toBeTruthy()
+            expect(case3).toBeTruthy()
+            expect(case4).toBeTruthy()
+            expect(case5).toBeFalsy()
+        }) // test
+        it('should default to length = 2 if none is provided', async () => {
+            const case1 = await schema.minWords().isValid('small words')
+            const case2 = await schema.minWords().isValid('simple words')
+            const case3 = await schema.minWords().isValid('blank')
+            const case4 = await schema.minWords().isValid('')
+            const case5 = await schema.minWords().isValid(null)
+
+            expect(case1).toBeTruthy()
+            expect(case2).toBeTruthy()
+            expect(case3).toBeFalsy()
+            expect(case4).toBeFalsy()
+            expect(case5).toBeFalsy()
+        }) // test
+        it('should return true if undefined', async () => {
+            const res = await schema.minWords(1).isValid(undefined)
+
+            expect(res).toBeTruthy()
+        }) // test
+    }) // group
 }) // group
