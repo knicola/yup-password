@@ -139,7 +139,7 @@ describe('Yup-Password Tests', () => {
     }) // group
 
     describe('.minUppercase()', () => {
-        it('should require a specified amount of lower-cased letters', async () => {
+        it('should require a specified amount of upper-cased letters', async () => {
             const case1 = await schema.minUppercase(1).isValid('has none')
             const case2 = await schema.minUppercase(10).isValid('NOT ENOUGH')
             const case3 = await schema.minUppercase(9).isValid('HAS ENOUGH')
@@ -171,7 +171,7 @@ describe('Yup-Password Tests', () => {
     }) // group
 
     describe('.minNumber()', () => {
-        it('should require a specified amount of lower-cased letters', async () => {
+        it('should require a specified amount of numbers', async () => {
             const case1 = await schema.minNumber(1).isValid('has none')
             const case2 = await schema.minNumber(10).isValid('NOT ENOUGH 123')
             const case3 = await schema.minNumber(5).isValid('HAS ENOUGH 12345')
@@ -201,7 +201,7 @@ describe('Yup-Password Tests', () => {
     }) // group
 
     describe('.minSymbol()', () => {
-        it('should require a specified amount of lower-cased letters', async () => {
+        it('should require a specified amount of symbols', async () => {
             const case1 = await schema.minSymbol(1).isValid('has none')
             const case2 = await schema.minSymbol(10).isValid('NOT ENOUGH !@#')
             const case3 = await schema.minSymbol(5).isValid('HAS ENOUGH !@#$%')
@@ -231,7 +231,7 @@ describe('Yup-Password Tests', () => {
     }) // group
 
     describe('.minRepeating()', () => {
-        it('should require a specified amount of lower-cased letters', async () => {
+        it('should not allow the same character repeated more than the specified amount in sequence', async () => {
             const case1 = await schema.minRepeating(2).isValid('lower-case aa')
             const case2 = await schema.minRepeating(2).isValid('upper-case AA')
             const case3 = await schema.minRepeating(2).isValid('numbers 11')
