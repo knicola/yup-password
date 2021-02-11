@@ -64,7 +64,7 @@ describe('Yup-Password Tests', () => {
             expect(case3).toBeTruthy()
             expect(case4).toBeTruthy()
         }) // test
-        it('should require at least one lower-cased letter', async () => {
+        it('should require at least one lowercase letter', async () => {
             const case1 = await schema.password().isValid('NO LOWERCASE 12 !')
             const case2 = await schema.password().isValid('HAS oNE 12 !')
             const case3 = await schema.password().isValid('HAS more 12 !')
@@ -72,7 +72,7 @@ describe('Yup-Password Tests', () => {
             expect(case2).toBeTruthy()
             expect(case3).toBeTruthy()
         }) // test
-        it('should require at least one upper-cased letter', async () => {
+        it('should require at least one uppercase letter', async () => {
             const case1 = await schema.password().isValid('no uppercase 12 !')
             const case2 = await schema.password().isValid('has One 12 !')
             const case3 = await schema.password().isValid('has MORE 12 !')
@@ -80,7 +80,7 @@ describe('Yup-Password Tests', () => {
             expect(case2).toBeTruthy()
             expect(case3).toBeTruthy()
         }) // test
-        it('should require at least one upper-cased letter', async () => {
+        it('should require at least one uppercase letter', async () => {
             const case1 = await schema.password().isValid('no uppercase 12 !')
             const case2 = await schema.password().isValid('has One 12 !')
             const case3 = await schema.password().isValid('has MORE 12 !')
@@ -107,7 +107,7 @@ describe('Yup-Password Tests', () => {
     }) // group
 
     describe('.minLowercase()', () => {
-        it('should require a specified amount of lower-cased letters', async () => {
+        it('should require a specified amount of lowercase letters', async () => {
             const case1 = await schema.minLowercase(1).isValid('HAS NONE')
             const case2 = await schema.minLowercase(10).isValid('has less')
             const case3 = await schema.minLowercase(9).isValid('has enough')
@@ -139,7 +139,7 @@ describe('Yup-Password Tests', () => {
     }) // group
 
     describe('.minUppercase()', () => {
-        it('should require a specified amount of upper-cased letters', async () => {
+        it('should require a specified amount of uppercase letters', async () => {
             const case1 = await schema.minUppercase(1).isValid('has none')
             const case2 = await schema.minUppercase(10).isValid('NOT ENOUGH')
             const case3 = await schema.minUppercase(9).isValid('HAS ENOUGH')
@@ -232,12 +232,12 @@ describe('Yup-Password Tests', () => {
 
     describe('.minRepeating()', () => {
         it('should not allow the same character repeated more than the specified amount in sequence', async () => {
-            const case1 = await schema.minRepeating(2).isValid('lower-case aa')
-            const case2 = await schema.minRepeating(2).isValid('upper-case AA')
+            const case1 = await schema.minRepeating(2).isValid('lowercase aa')
+            const case2 = await schema.minRepeating(2).isValid('uppercase AA')
             const case3 = await schema.minRepeating(2).isValid('numbers 11')
             const case4 = await schema.minRepeating(2).isValid('symbols !!')
-            const case5 = await schema.minRepeating(2).isValid('lower-case aaa')
-            const case6 = await schema.minRepeating(2).isValid('upper-case AAA')
+            const case5 = await schema.minRepeating(2).isValid('lowercase aaa')
+            const case6 = await schema.minRepeating(2).isValid('uppercase AAA')
             const case7 = await schema.minRepeating(2).isValid('numbers 111')
             const case8 = await schema.minRepeating(2).isValid('symbols !!!')
             const case9 = await schema.minRepeating(2).isValid('good measure aaBB11!!')

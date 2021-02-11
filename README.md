@@ -40,7 +40,7 @@ await schema.password().validate('input')
 ## API
 
 ##### .password()
-Password must meet the default requirements: at least 8 characters, at most 250 characters, at least 1 lower-cased letter, at least 1 upper-cased letter, at least 1 number and at least 1 symbol.
+Password must meet the default requirements: at least 8 characters, at most 250 characters, at least 1 lowercase letter, at least 1 uppercase letter, at least 1 number and at least 1 symbol.
 ```js
 const schema = yup.object().shape({
     username: yup.string().email().required(),
@@ -49,15 +49,15 @@ const schema = yup.object().shape({
 
 const input = {
     username: 'user@example.com',
-    password: 'this password will faaaail',
+    password: 'secret',
 }
 
 try {
-    const res = await schema.validate(password, { abortEarly: false })
+    const res = await schema.validate(input, { abortEarly: false })
 } catch (e) {
     console.log(e.errors) // => [
     //   'password must be at least 8 characters',
-    //   'password must contain at least 1 upper-cased letter',
+    //   'password must contain at least 1 uppercase letter',
     //   'password must contain at least 1 number',
     //   'password must contain at least 1 symbol',
     // ]
@@ -65,13 +65,13 @@ try {
 ```
 
 ##### .minLowercase(length?: number = 1, message?: string)
-Password must contain X amount of lower-cased letters or more.
+Password must contain X amount of lowercase letters or more.
 ```js
 yup.string().minLowercase(1)
 ```
 
 ##### .minUppercase(length?: number = 1, message?: string)
-Password must contain X amount of upper-cased letters or more.
+Password must contain X amount of uppercase letters or more.
 ```js
 yup.string().minUppercase(1)
 ```

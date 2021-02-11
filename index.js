@@ -10,7 +10,7 @@ const isNullOrUndefined = function (value) {
 }
 
 function minLowercase(length = 1, message) {
-    const msg = message || '${path} must contain at least ${length} lower-cased ' + p('letter', length)
+    const msg = message || '${path} must contain at least ${length} lowercase ' + p('letter', length)
     return this.test({
         name: 'minLowercase',
         exclusive: true,
@@ -23,7 +23,7 @@ function minLowercase(length = 1, message) {
 } // minLowercase()
 
 function minUppercase(length = 1, message) {
-    const msg = message || '${path} must contain at least ${length} upper-cased ' + p('letter', length)
+    const msg = message || '${path} must contain at least ${length} uppercase ' + p('letter', length)
     return this.test({
         name: 'minUppercase',
         exclusive: true,
@@ -98,6 +98,7 @@ class PasswordSchema extends StringSchema {
         super()
     }
 }
+
 PasswordSchema.prototype.minLowercase = minLowercase
 PasswordSchema.prototype.minUppercase = minUppercase
 PasswordSchema.prototype.minNumber = minNumber
