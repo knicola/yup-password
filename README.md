@@ -18,24 +18,13 @@ $ yarn add yup-password
 
 ## Usage
 
-##### Extend yup
 ```js
 const yup = require('yup')
-
+// extend yup
 require('yup-password')(yup)
 
 await yup.string().password().validate('input')
 ```
-
-##### Password schema
-```js
-const { PasswordSchema } = require('yup-password')
-
-const schema = new PasswordSchema()
-
-await schema.password().validate('input')
-```
-
 
 ## API
 

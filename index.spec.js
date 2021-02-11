@@ -1,30 +1,18 @@
 'use strict'
 
-const { PasswordSchema } = require('./index')
-const schema = new PasswordSchema()
+const yup = require('yup')
+require('./index')(yup)
+const schema = yup.string()
 
 describe('Yup-Password Tests', () => {
     describe('Setup', () => {
         it('should add all password validation methods to yup', () => {
-            jest.resetModules() // for good measure
-
-            const yup = require('yup')
-
-            expect(yup.string()).not.toHaveProperty('minLowercase')
-            expect(yup.string()).not.toHaveProperty('minUppercase')
-            expect(yup.string()).not.toHaveProperty('minNumber')
-            expect(yup.string()).not.toHaveProperty('minSymbol')
-            expect(yup.string()).not.toHaveProperty('minRepeating')
-            expect(yup.string()).not.toHaveProperty('password')
-
-            require('./index')(yup)
-
-            expect(yup.string()).toHaveProperty('minLowercase')
-            expect(yup.string()).toHaveProperty('minUppercase')
-            expect(yup.string()).toHaveProperty('minNumber')
-            expect(yup.string()).toHaveProperty('minSymbol')
-            expect(yup.string()).toHaveProperty('minRepeating')
-            expect(yup.string()).toHaveProperty('password')
+            expect(schema).toHaveProperty('minLowercase')
+            expect(schema).toHaveProperty('minUppercase')
+            expect(schema).toHaveProperty('minNumber')
+            expect(schema).toHaveProperty('minSymbol')
+            expect(schema).toHaveProperty('minRepeating')
+            expect(schema).toHaveProperty('password')
         }) // test
     }) // group
 

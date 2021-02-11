@@ -1,6 +1,6 @@
-import { Schema, StringSchema } from "yup";
+import * as Yup from "yup";
 
-declare module 'yup' {
+declare module "yup" {
     interface StringSchema {
         minLowercase(length?: number, message?: string): StringSchema;
         minUppercase(length?: number, message?: string): StringSchema;
@@ -11,20 +11,6 @@ declare module 'yup' {
     }
 }
 
-declare function YupPassword(yup: Schema);
+declare function YupPassword(yup: typeof Yup): void;
 
-declare namespace YupPassword {
-    export interface PasswordSchema extends StringSchema {
-        minLowercase(length?: number, message?: string): PasswordSchema;
-        minUppercase(length?: number, message?: string): PasswordSchema;
-        minNumber(length?: number, message?: string): PasswordSchema;
-        minSymbol(length?: number, message?: string): PasswordSchema;
-        minRepeating(length?: number, message?: string): PasswordSchema;
-        password(): PasswordSchema;
-    }
-
-    export class PasswordSchema implements StringSchema {}
-}
-
-export = YupPassword;
 export default YupPassword;

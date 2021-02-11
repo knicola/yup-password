@@ -84,28 +84,6 @@ function password() {
         .minSymbol(1)
 } // password()
 
-const { string: StringSchema } = (function() {
-    try {
-        return require('yup')
-    } catch (e) {
-        /* istanbul ignore next */
-        throw Error('yup-password requires `yup` package to be installed.')
-    }
-})()
-
-class PasswordSchema extends StringSchema {
-    constructor() {
-        super()
-    }
-}
-
-PasswordSchema.prototype.minLowercase = minLowercase
-PasswordSchema.prototype.minUppercase = minUppercase
-PasswordSchema.prototype.minNumber = minNumber
-PasswordSchema.prototype.minSymbol = minSymbol
-PasswordSchema.prototype.minRepeating = minRepeating
-PasswordSchema.prototype.password = password
-
 function setup(yup) {
     yup.addMethod(yup.string, 'minLowercase', minLowercase)
     yup.addMethod(yup.string, 'minUppercase', minUppercase)
@@ -114,7 +92,5 @@ function setup(yup) {
     yup.addMethod(yup.string, 'minRepeating', minRepeating)
     yup.addMethod(yup.string, 'password', password)
 }
-
-setup.PasswordSchema = PasswordSchema
 
 module.exports = setup
