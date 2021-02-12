@@ -9,8 +9,8 @@ describe('Yup-Password Tests', () => {
         it('should add all password validation methods to yup', () => {
             expect(schema).toHaveProperty('minLowercase')
             expect(schema).toHaveProperty('minUppercase')
-            expect(schema).toHaveProperty('minNumber')
-            expect(schema).toHaveProperty('minSymbol')
+            expect(schema).toHaveProperty('minNumbers')
+            expect(schema).toHaveProperty('minSymbols')
             expect(schema).toHaveProperty('minRepeating')
             expect(schema).toHaveProperty('password')
         }) // test
@@ -158,14 +158,14 @@ describe('Yup-Password Tests', () => {
         }) // test
     }) // group
 
-    describe('.minNumber()', () => {
+    describe('.minNumbers()', () => {
         it('should require a specified amount of numbers', async () => {
-            const case1 = await schema.minNumber(1).isValid('has none')
-            const case2 = await schema.minNumber(10).isValid('NOT ENOUGH 123')
-            const case3 = await schema.minNumber(5).isValid('HAS ENOUGH 12345')
-            const case4 = await schema.minNumber(5).isValid('HAS MORE 12345678')
-            const case5 = await schema.minNumber(0).isValid('A')
-            const case6 = await schema.minNumber(0).isValid('')
+            const case1 = await schema.minNumbers(1).isValid('has none')
+            const case2 = await schema.minNumbers(10).isValid('NOT ENOUGH 123')
+            const case3 = await schema.minNumbers(5).isValid('HAS ENOUGH 12345')
+            const case4 = await schema.minNumbers(5).isValid('HAS MORE 12345678')
+            const case5 = await schema.minNumbers(0).isValid('A')
+            const case6 = await schema.minNumbers(0).isValid('')
 
             expect(case1).toBeFalsy()
             expect(case2).toBeFalsy()
@@ -175,27 +175,27 @@ describe('Yup-Password Tests', () => {
             expect(case6).toBeTruthy()
         }) // test
         it('should default to length = 1 if none is provided', async () => {
-            const case1 = await schema.minNumber().isValid('1')
-            const case2 = await schema.minNumber().isValid('')
+            const case1 = await schema.minNumbers().isValid('1')
+            const case2 = await schema.minNumbers().isValid('')
 
             expect(case1).toBeTruthy()
             expect(case2).toBeFalsy()
         }) // test
         it('should return true if undefined', async () => {
-            const res = await schema.minNumber(1).isValid(undefined)
+            const res = await schema.minNumbers(1).isValid(undefined)
 
             expect(res).toBeTruthy()
         }) // test
     }) // group
 
-    describe('.minSymbol()', () => {
+    describe('.minSymbols()', () => {
         it('should require a specified amount of symbols', async () => {
-            const case1 = await schema.minSymbol(1).isValid('has none')
-            const case2 = await schema.minSymbol(10).isValid('NOT ENOUGH !@#')
-            const case3 = await schema.minSymbol(5).isValid('HAS ENOUGH !@#$%')
-            const case4 = await schema.minSymbol(5).isValid('HAS MORE !@#$%^&')
-            const case5 = await schema.minSymbol(0).isValid('A')
-            const case6 = await schema.minSymbol(0).isValid('')
+            const case1 = await schema.minSymbols(1).isValid('has none')
+            const case2 = await schema.minSymbols(10).isValid('NOT ENOUGH !@#')
+            const case3 = await schema.minSymbols(5).isValid('HAS ENOUGH !@#$%')
+            const case4 = await schema.minSymbols(5).isValid('HAS MORE !@#$%^&')
+            const case5 = await schema.minSymbols(0).isValid('A')
+            const case6 = await schema.minSymbols(0).isValid('')
 
             expect(case1).toBeFalsy()
             expect(case2).toBeFalsy()
@@ -205,14 +205,14 @@ describe('Yup-Password Tests', () => {
             expect(case6).toBeTruthy()
         }) // test
         it('should default to length = 1 if none is provided', async () => {
-            const case1 = await schema.minSymbol().isValid('@')
-            const case2 = await schema.minSymbol().isValid('')
+            const case1 = await schema.minSymbols().isValid('@')
+            const case2 = await schema.minSymbols().isValid('')
 
             expect(case1).toBeTruthy()
             expect(case2).toBeFalsy()
         }) // test
         it('should return true if undefined', async () => {
-            const res = await schema.minSymbol(1).isValid(undefined)
+            const res = await schema.minSymbols(1).isValid(undefined)
 
             expect(res).toBeTruthy()
         }) // test

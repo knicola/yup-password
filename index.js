@@ -35,7 +35,7 @@ function minUppercase(length = 1, message) {
     })
 } // minUppercase()
 
-function minNumber(length = 1, message) {
+function minNumbers(length = 1, message) {
     const msg = message || '${path} must contain at least ${length} ' + p('number', length)
     return this.test({
         name: 'minNumber',
@@ -48,7 +48,7 @@ function minNumber(length = 1, message) {
     })
 } // minNumber()
 
-function minSymbol(length = 1, message) {
+function minSymbols(length = 1, message) {
     const msg = message || '${path} must contain at least ${length} ' + p('symbol', length)
     return this.test({
         name: 'minSymbol',
@@ -94,15 +94,17 @@ function password() {
         .max(250)
         .minLowercase(1)
         .minUppercase(1)
-        .minNumber(1)
-        .minSymbol(1)
+        .minNumbers(1)
+        .minSymbols(1)
 } // password()
 
 function setup(yup) {
     yup.addMethod(yup.string, 'minLowercase', minLowercase)
     yup.addMethod(yup.string, 'minUppercase', minUppercase)
-    yup.addMethod(yup.string, 'minNumber', minNumber)
-    yup.addMethod(yup.string, 'minSymbol', minSymbol)
+    yup.addMethod(yup.string, 'minNumber', minNumbers)
+    yup.addMethod(yup.string, 'minNumbers', minNumbers)
+    yup.addMethod(yup.string, 'minSymbol', minSymbols)
+    yup.addMethod(yup.string, 'minSymbols', minSymbols)
     yup.addMethod(yup.string, 'minRepeating', minRepeating)
     yup.addMethod(yup.string, 'minWords', minWords)
     yup.addMethod(yup.string, 'password', password)
