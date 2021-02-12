@@ -75,7 +75,7 @@ function minRepeating(length = 2, message) {
 } // minRepeating()
 
 function minWords(length = 2, message) {
-    const msg = message || '${path} must have at least ${length} ' + p('word', length)
+    const msg = message || '${path} must contain at least ${length} ' + p('word', length)
     const rx = new RegExp('[a-zA-Z0-9]')
     return this.test({
         name: 'minWords',
