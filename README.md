@@ -17,20 +17,11 @@ $ yarn add yup-password
 
 
 ## Usage
-
+Plug and play:
 ```js
 const yup = require('yup')
-// extend yup
-require('yup-password')(yup)
+require('yup-password')(yup) // extend yup
 
-await yup.string().password().validate('input')
-```
-
-## API
-
-##### .password()
-Password must meet the default requirements: at least 8 characters, at most 250 characters, at least 1 lowercase letter, at least 1 uppercase letter, at least 1 number and at least 1 symbol.
-```js
 const schema = yup.object().shape({
     username: yup.string().email().required(),
     password: yup.string().password().required(),
@@ -43,6 +34,7 @@ const input = {
 
 try {
     const res = await schema.validate(input, { abortEarly: false })
+    //  ...
 } catch (e) {
     console.log(e.errors) // => [
     //   'password must be at least 8 characters',
@@ -52,41 +44,77 @@ try {
     // ]
 }
 ```
+Override, disable or add additional rules:
+```js
+const schema = yup.string().password()
+    .minLowercase(8) // raise the lowercase requirement to 8
+    .min(0) // disable minimum characters completely
+    .minWords(2) // add an additional rule
 
-##### .minLowercase(length?: number = 1, message?: string)
+try {
+    const res = await schema.validate('secret')
+    //  ...
+} catch(e) {
+    console.log(e.errors) // => [
+    //   'password must contain at least 2 words',              <-- added
+    //   'password must contain at least 8 lowercase letters',  <-- overridden
+    //   'password must contain at least 1 uppercase letter',
+    //   'password must contain at least 1 number',
+    //   'password must contain at least 1 symbol',
+    // ]
+}
+```
+Pick and choose your password rules:
+```js
+const schema = yup.string().min(6).minUppercase(3).minRepeating(2).minWords(2)
+
+await schema.isValid('Now, THIS is some password.') // => true
+await schema.isValid('But thiiis is not.') // => false
+```
+
+## API
+
+#### .password()
+Password must meet the default requirements: at least 8 characters, at most 250 characters, at least 1 lowercase letter, at least 1 uppercase letter, at least 1 number and at least 1 symbol.
+```js
+const schema = yup.string().password()
+```
+
+#### .minLowercase(length?: number = 1, message?: string)
 Password must contain X amount of lowercase letters or more.
 ```js
-yup.string().minLowercase(1)
+const schema = yup.string().minLowercase(3, 'custom message')
 ```
 
-##### .minUppercase(length?: number = 1, message?: string)
+#### .minUppercase(length?: number = 1, message?: string)
 Password must contain X amount of uppercase letters or more.
 ```js
-yup.string().minUppercase(1)
+const schema = yup.string().minUppercase(3, 'custom message')
 ```
 
-##### .minNumber(length?: number = 1, message?: string)
+#### .minNumber(length?: number = 1, message?: string)
 Password must contain X amount of numbers or more.
 ```js
-yup.string().minNumber(1)
+const schema = yup.string().minNumber(3, 'custom message')
 ```
 
-##### .minSymbol(length?: number = 1, message?: string)
+#### .minSymbol(length?: number = 1, message?: string)
 Password must contain X amount of symbols or more.
 ```js
-yup.string().minSymbol(1)
+const schema = yup.string().minSymbol(3, 'custom message')
 ```
 
-##### .minRepeating(length?: number = 2, message?: string)
+#### .minRepeating(length?: number = 2, message?: string)
 Password must not contain a sequence of X amount of repeated characters. For example, if the limit is 2 `thiis` will pass but `thiiis` will not.
 ```js
-yup.string().minRepeating(2)
+const schema = yup.string().minRepeating(3, 'custom message')
 ```
 
-##### .minWords(length?: number = 2, message?: string)
-Password must contain X amount of words or more.
+#### .minWords(length?: number = 2, message?: string)
+Password must contain X amount of words or more. So long as a sequence of characters contains letters or numbers,
+it will be recognized as a word. For example `secret`, `1st!` and `1337` count as words, but `!@#$%` does not.
 ```js
-yup.string().minWords(2)
+const schema = yup.string().minWords(3, 'custom message')
 ```
 
 ## License
