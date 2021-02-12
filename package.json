@@ -38,9 +38,6 @@
     "rollup-plugin-terser": "^7.0.2",
     "yup": "^0.29.3"
   },
-  "peerDependencies": {
-    "yup": "^0.29.3"
-  },
   "jest": {
     "testMatch": [
       "<rootDir>/**/*.spec.js"
