@@ -19,9 +19,18 @@ $ yarn add yup-password
 ## Usage
 Plug and play:
 ```js
+// ES6
+import * as yup from 'yup'
+import YupPassword from 'yup-password'
+YupPassword(yup) // extend yup
+```
+```js
+// CommonJs
 const yup = require('yup')
 require('yup-password')(yup) // extend yup
-
+```
+```js
+// Build schema
 const schema = yup.object().shape({
     username: yup.string().email().required(),
     password: yup.string().password().required(),
@@ -33,6 +42,7 @@ const input = {
 }
 
 try {
+    // validate
     const res = await schema.validate(input, { abortEarly: false })
     //  ...
 } catch (e) {
