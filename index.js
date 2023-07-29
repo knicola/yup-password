@@ -101,9 +101,7 @@ function password() {
 function setup(yup) {
     yup.addMethod(yup.string, 'minLowercase', minLowercase)
     yup.addMethod(yup.string, 'minUppercase', minUppercase)
-    yup.addMethod(yup.string, 'minNumber', minNumbers)
     yup.addMethod(yup.string, 'minNumbers', minNumbers)
-    yup.addMethod(yup.string, 'minSymbol', minSymbols)
     yup.addMethod(yup.string, 'minSymbols', minSymbols)
     yup.addMethod(yup.string, 'minRepeating', minRepeating)
     yup.addMethod(yup.string, 'minWords', minWords)

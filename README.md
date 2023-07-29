@@ -102,16 +102,12 @@ Password must contain X amount of uppercase letters or more.
 const schema = yup.string().minUppercase(3, 'custom message')
 ```
 
-#### [Deprecated] .minNumber(length?: number = 1, message?: string)
-Use `.minNumbers()` instead.
 #### .minNumbers(length?: number = 1, message?: string)
 Password must contain X amount of numbers or more.
 ```js
 const schema = yup.string().minNumbers(3, 'custom message')
 ```
 
-#### [Deprecated] .minSymbol(length?: number = 1, message?: string)
-Use `.minSymbols()` instead.
 #### .minSymbols(length?: number = 1, message?: string)
 Password must contain X amount of symbols or more.
 ```js
