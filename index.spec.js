@@ -11,7 +11,7 @@ describe('Yup-Password Tests', () => {
             expect(schema).toHaveProperty('minUppercase')
             expect(schema).toHaveProperty('minNumbers')
             expect(schema).toHaveProperty('minSymbols')
-            expect(schema).toHaveProperty('minRepeating')
+            expect(schema).toHaveProperty('maxRepeating')
             expect(schema).toHaveProperty('password')
         }) // test
     }) // group
@@ -218,18 +218,18 @@ describe('Yup-Password Tests', () => {
         }) // test
     }) // group
 
-    describe('.minRepeating()', () => {
+    describe('.maxRepeating()', () => {
         it('should not allow the same character repeated more than the specified amount in sequence', async () => {
-            const case1 = await schema.minRepeating(2).isValid('lowercase aa')
-            const case2 = await schema.minRepeating(2).isValid('uppercase AA')
-            const case3 = await schema.minRepeating(2).isValid('numbers 11')
-            const case4 = await schema.minRepeating(2).isValid('symbols !!')
-            const case5 = await schema.minRepeating(2).isValid('lowercase aaa')
-            const case6 = await schema.minRepeating(2).isValid('uppercase AAA')
-            const case7 = await schema.minRepeating(2).isValid('numbers 111')
-            const case8 = await schema.minRepeating(2).isValid('symbols !!!')
-            const case9 = await schema.minRepeating(2).isValid('good measure aaBB11!!')
-            const case10 = await schema.minRepeating(2).isValid('good measure aaaBBB111!!!')
+            const case1 = await schema.maxRepeating(2).isValid('lowercase aa')
+            const case2 = await schema.maxRepeating(2).isValid('uppercase AA')
+            const case3 = await schema.maxRepeating(2).isValid('numbers 11')
+            const case4 = await schema.maxRepeating(2).isValid('symbols !!')
+            const case5 = await schema.maxRepeating(2).isValid('lowercase aaa')
+            const case6 = await schema.maxRepeating(2).isValid('uppercase AAA')
+            const case7 = await schema.maxRepeating(2).isValid('numbers 111')
+            const case8 = await schema.maxRepeating(2).isValid('symbols !!!')
+            const case9 = await schema.maxRepeating(2).isValid('good measure aaBB11!!')
+            const case10 = await schema.maxRepeating(2).isValid('good measure aaaBBB111!!!')
 
             expect(case1).toBeTruthy()
             expect(case2).toBeTruthy()
@@ -243,16 +243,16 @@ describe('Yup-Password Tests', () => {
             expect(case10).toBeFalsy()
         }) // test
         it('should default to length = 2 if none is provided', async () => {
-            const case1 = await schema.minRepeating().isValid('')
-            const case2 = await schema.minRepeating().isValid('@@')
-            const case3 = await schema.minRepeating().isValid('@@@')
+            const case1 = await schema.maxRepeating().isValid('')
+            const case2 = await schema.maxRepeating().isValid('@@')
+            const case3 = await schema.maxRepeating().isValid('@@@')
 
             expect(case1).toBeTruthy()
             expect(case2).toBeTruthy()
             expect(case3).toBeFalsy()
         }) // test
         it('should return true if undefined', async () => {
-            const res = await schema.minRepeating(1).isValid(undefined)
+            const res = await schema.maxRepeating(1).isValid(undefined)
 
             expect(res).toBeTruthy()
         }) // test

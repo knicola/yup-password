@@ -114,10 +114,10 @@ Password must contain X amount of symbols or more.
 const schema = yup.string().minSymbols(3, 'custom message')
 ```
 
-#### .minRepeating(length?: number = 2, message?: string)
+#### .maxRepeating(length?: number = 2, message?: string)
 Password must not contain a sequence of X amount of repeated characters. For example, if the limit is 2 `thiis` will pass but `thiiis` will not.
 ```js
-const schema = yup.string().minRepeating(3, 'custom message')
+const schema = yup.string().maxRepeating(3, 'custom message')
 ```
 
 #### .minWords(length?: number = 2, message?: string)

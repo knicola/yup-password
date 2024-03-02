@@ -61,10 +61,10 @@ function minSymbols(length = 1, message) {
     })
 } // minSymbol()
 
-function minRepeating(length = 2, message) {
+function maxRepeating(length = 2, message) {
     const msg = message || '${path} must not contain sequences of more than ${length} repeated ' + p('character', length)
     return this.test({
-        name: 'minRepeating',
+        name: 'maxRepeating',
         exclusive: true,
         message: msg,
         params: { length: length },
@@ -72,7 +72,7 @@ function minRepeating(length = 2, message) {
             return isNullOrUndefined(value) || ! new RegExp(`(.)\\1{${length},}`).test(value)
         }
     })
-} // minRepeating()
+} // maxRepeating()
 
 function minWords(length = 2, message) {
     const msg = message || '${path} must contain at least ${length} ' + p('word', length)
@@ -103,7 +103,8 @@ function setup(yup) {
     yup.addMethod(yup.string, 'minUppercase', minUppercase)
     yup.addMethod(yup.string, 'minNumbers', minNumbers)
     yup.addMethod(yup.string, 'minSymbols', minSymbols)
-    yup.addMethod(yup.string, 'minRepeating', minRepeating)
+    yup.addMethod(yup.string, 'minRepeating', maxRepeating)
+    yup.addMethod(yup.string, 'maxRepeating', maxRepeating)
     yup.addMethod(yup.string, 'minWords', minWords)
     yup.addMethod(yup.string, 'password', password)
 }
