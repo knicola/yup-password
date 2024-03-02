@@ -1,7 +1,8 @@
 'use strict'
 
-const yup = require('yup')
-require('./index')(yup)
+import * as yup from 'yup'
+import YupPassword from '../src'
+YupPassword(yup)
 const schema = yup.string()
 
 describe('Yup-Password Tests', () => {
@@ -33,7 +34,7 @@ describe('Yup-Password Tests', () => {
                 '0af9aighai5eel3chohc1thaeyeisuangooghingohkahr9Giu' +
                 'cisiu2neelaiY3meek8aTheith3Ta6eighiehei2ahtheeQuee' +
                 '7zuth5te0Ahthaitaequae5ahghairai6Fiu0aisiet9kilad!' +
-                'extra'
+                'extra',
             )
             // exactly 250
             const case2 = await schema.password().isValid(
@@ -41,7 +42,7 @@ describe('Yup-Password Tests', () => {
                 'eengo4quoo1Chei3aBei0Shaxei0aivei2euNgaiz1eiri6jae' +
                 '0af9aighai5eel3chohc1thaeyeisuangooghingohkahr9Giu' +
                 'cisiu2neelaiY3meek8aTheith3Ta6eighiehei2ahtheeQuee' +
-                '7zuth5te0Ahthaitaequae5ahghairai6Fiu0aisiet9kilad!'
+                '7zuth5te0Ahthaitaequae5ahghairai6Fiu0aisiet9kilad!',
             )
             // less than 250, exactly 8
             const case3 = await schema.password().isValid('aBCdEF1!')

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@knicola/dev-config/tsconfig/node",
+  "compilerOptions": {
+    "removeComments": false,
+    "noUnusedLocals": true,
+    "declaration": true,
+    "outDir": "dist/",
+    "baseUrl": "."
+  },
+  "include": [ "src/**/*.ts" ]
+}
