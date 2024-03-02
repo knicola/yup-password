@@ -1,6 +1,6 @@
 {
   "name": "yup-password",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Yup, dead simple password validation.",
   "keywords": [
     "yup",
