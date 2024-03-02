@@ -6,10 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [next-version] - next-release-date
 ### Changed
-* Bump `@types/jest` from 27.0.1 to 29.5.3
-* Bump `eslint` from 7.32.0 to 8.46.0
-* Bump `jest` from 27.0.6 to 29.6.2
-* Bump `yup` from 0.32.9 to 1.2.0
+* Bump `@types/jest` from 27.0.1 to 29.5.12
+* Bump `eslint` from 7.32.0 to 8.57.0
+* Bump `jest` from 27.0.6 to 29.7.0
+* Bump `yup` from 0.32.9 to 1.3.3
+* Rename `.minRepeating()` method to `.maxRepeating()`. The old method is deprecated and will be removed in a future release.
 
 ### Removed
 * Deprecated methods `.minNumber()` and `.minSymbol()`.
