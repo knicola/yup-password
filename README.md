@@ -19,13 +19,13 @@ $ yarn add yup-password
 ## Usage
 Plug and play:
 ```js
-// ES6
+// MJS / TS
 import * as yup from 'yup'
 import YupPassword from 'yup-password'
 YupPassword(yup) // extend yup
 ```
 ```js
-// CommonJs
+// CJS
 const yup = require('yup')
 require('yup-password')(yup) // extend yup
 ```
@@ -62,7 +62,7 @@ const schema = yup.string().password()
     .minWords(2) // add an additional rule
 
 try {
-    const res = await schema.validate('secret')
+    const res = await schema.validate('secret', { abortEarly: false })
     //  ...
 } catch(e) {
     console.log(e.errors) // => [
@@ -76,7 +76,7 @@ try {
 ```
 Pick and choose your password rules:
 ```js
-const schema = yup.string().min(6).minUppercase(3).minRepeating(2).minWords(2)
+const schema = yup.string().min(6).minUppercase(3).maxRepeating(2).minWords(2)
 
 await schema.isValid('Now, THIS is some password.') // => true
 await schema.isValid('But thiiis is not.') // => false
