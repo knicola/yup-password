@@ -3,9 +3,6 @@
   "extends": "@knicola/dev-config/tsconfig/node",
   "compilerOptions": {
     "types": [ "node", "jest" ],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "baseUrl": "."
   },
   "include": [ "**/*.ts", "**/*.js" ]
