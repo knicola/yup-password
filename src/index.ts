@@ -1,4 +1,5 @@
 /* eslint-disable
+   @typescript-eslint/restrict-template-expressions,
    @typescript-eslint/method-signature-style,
    no-template-curly-in-string
 */
@@ -27,15 +28,18 @@ declare module 'yup' {
     }
 }
 
+// pluralize
+function p (word: string, num: number): string {
+    return num === 1 ? word : `${word}s`
+}
+
 const messages: Record<string, any> = {
-    // locale allows callbacks. perhaps use that to add pluralization back? it's not a must, but it's a nice touch.
-    minLowercase: '${path} must contain at least ${length} lowercase letters',
-    minUppercase: '${path} must contain at least ${length} uppercase letters',
-    minNumbers: '${path} must contain at least ${length} numbers',
-    minSymbols: '${path} must contain at least ${length} symbols',
-    minRepeating: '${path} must not contain sequences of more than ${length} repeated characters',
-    maxRepeating: '${path} must not contain sequences of more than ${length} repeated characters',
-    minWords: '${path} must contain at least ${length} words',
+    minLowercase: ({ path, length }) => `${path} must contain at least ${length} lowercase ${p('letter', length)}`,
+    minUppercase: ({ path, length }) => `${path} must contain at least ${length} uppercase ${p('letter', length)}`,
+    minNumbers: ({ path, length }) => `${path} must contain at least ${length} ${p('number', length)}`,
+    minSymbols: ({ path, length }) => `${path} must contain at least ${length} ${p('symbol', length)}`,
+    maxRepeating: ({ path, length }) => `${path} must not contain sequences of more than ${length} repeated characters`,
+    minWords: ({ path, length }) => `${path} must contain at least ${length} ${p('word', length)}`,
 }
 
 function isNullOrUndefined (value: any): value is null | undefined {
