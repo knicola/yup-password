@@ -81,6 +81,20 @@ const schema = yup.string().min(6).minUppercase(3).maxRepeating(2).minWords(2)
 await schema.isValid('Now, THIS is some password.') // => true
 await schema.isValid('But thiiis is not.') // => false
 ```
+Localize your error messages:
+```js
+yup.setLocale({
+    string: {
+        minLowercase: 'Localized message (path=${path};length=${length})',
+        minUppercase: 'Localized message (path=${path};length=${length})',
+        minNumbers: 'Localized message (path=${path};length=${length})',
+        minSymbols: 'Localized message (path=${path};length=${length})',
+        maxRepeating: 'Localized message (path=${path};length=${length})',
+        minWords: 'Localized message (path=${path};length=${length})',
+    }, // when using typescript, you may want to append `as any` to the end
+       // of this object to avoid type errors.
+})
+```
 
 ## API
 
